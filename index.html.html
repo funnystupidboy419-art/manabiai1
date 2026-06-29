@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>富士市『学び合い』の会</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1f4788;
+    --blue-mid: #3a6bbf;
+    --blue-light: #dce8f7;
+    --blue-pale: #f0f5fc;
+    --ink: #1a1a2e;
+    --text: #333344;
+    --muted: #6b6b80;
+    --border: #e0e4ec;
+    --white: #ffffff;
+    --off-white: #f8f9fc;
+    --accent-yellow: #f5c842;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid var(--border);
+  }
+
+  nav {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding: 0 1.5rem;
+  }
+
+  .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+
+  .nav-logo-mark {
+    width: 36px; height: 36px;
+    background: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .nav-logo-text {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+  }
+
+  .nav-logo-text small {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.62rem;
+    color: var(--muted);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+  }
+
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--blue); }
+
+  /* HERO */
+  .hero-wrap {
+    padding-top: 60px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: var(--white);
+  }
+
+  .hero {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 4rem 1.5rem;
+    width: 100%;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--blue-pale);
+    color: var(--blue);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    padding: 0.3rem 0.75rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: var(--blue);
+    border-radius: 50%;
+  }
+
+  h1.hero-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  h1.hero-title span { color: var(--blue); }
+
+  .hero-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 2;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    letter-spacing: 0.04em;
+    border-left: 3px solid var(--blue-light);
+    padding-left: 1rem;
+  }
+
+  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--blue); color: white;
+    padding: 0.8rem 1.8rem;
+    text-decoration: none; font-size: 0.8rem;
+    letter-spacing: 0.12em; font-weight: 500;
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--blue-mid); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent; color: var(--blue);
+    padding: 0.8rem 1.8rem;
+    text-decoration: none; font-size: 0.8rem;
+    letter-spacing: 0.12em; font-weight: 500;
+    border: 1.5px solid var(--blue);
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-outline:hover { background: var(--blue-pale); transform: translateY(-2px); }
+
+  .concept-card {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  .concept-card-label {
+    position: absolute;
+    top: -1px; left: 2rem;
+    background: var(--blue);
+    color: white;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.72rem;
+    padding: 0.22rem 0.7rem;
+    letter-spacing: 0.08em;
+  }
+
+  .concept-pillars { margin-top: 0.5rem; display: flex; flex-direction: column; gap: 1.2rem; }
+
+  .pillar { display: flex; gap: 1rem; align-items: flex-start; padding-bottom: 1.2rem; border-bottom: 1px solid var(--border); }
+  .pillar:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .pillar-icon {
+    width: 44px; height: 44px;
+    background: var(--blue); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.78rem; flex-shrink: 0; font-weight: 600;
+    text-align: center; line-height: 1.3;
+  }
+
+  .pillar-body h4 { font-size: 0.83rem; font-weight: 600; color: var(--blue); margin-bottom: 0.25rem; }
+  .pillar-body p { font-size: 0.76rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+
+  .concept-quote {
+    margin-top: 1.5rem;
+    padding: 0.9rem;
+    background: var(--blue);
+    color: white;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.9rem; letter-spacing: 0.08em; text-align: center; font-weight: 500;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 5rem 1.5rem; }
+
+  .section-inner { max-width: 1080px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-size: 0.67rem; letter-spacing: 0.3em;
+    color: var(--blue-mid); text-transform: uppercase;
+    margin-bottom: 0.4rem; font-weight: 500;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .section-eyebrow::after { content: ''; display: block; width: 28px; height: 1px; background: var(--blue-mid); }
+
+  .section-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    color: var(--ink); font-weight: 600;
+    letter-spacing: 0.04em; margin-bottom: 0.75rem; line-height: 1.4;
+  }
+
+  .section-desc {
+    color: var(--muted); font-size: 0.87rem;
+    line-height: 2; max-width: 540px; font-weight: 300; margin-bottom: 2.5rem;
+  }
+
+  /* ABOUT */
+  .about-section { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+  .nishikawa-card {
+    background: white; border: 1px solid var(--border); padding: 2rem;
+  }
+
+  .prof-head {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--border);
+  }
+
+  .prof-avatar {
+    width: 52px; height: 52px;
+    background: var(--blue-light); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Shippori Mincho', serif; font-size: 1.3rem; color: var(--blue); flex-shrink: 0;
+  }
+
+  .prof-info h4 { font-family: 'Shippori Mincho', serif; font-size: 0.95rem; color: var(--ink); font-weight: 600; }
+  .prof-info p { font-size: 0.7rem; color: var(--muted); font-weight: 300; }
+
+  .nishikawa-card .body { font-size: 0.8rem; color: var(--muted); line-height: 1.9; font-weight: 300; }
+
+  .view-items { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 2rem; }
+
+  .view-item {
+    background: white; border: 1px solid var(--border);
+    border-left: 4px solid var(--blue); padding: 1.1rem 1.4rem;
+  }
+  .view-item.v2 { border-left-color: var(--blue-mid); }
+  .view-item.v3 { border-left-color: #5b8cc8; }
+
+  .view-item h4 { font-size: 0.8rem; font-weight: 600; color: var(--blue); margin-bottom: 0.3rem; }
+  .view-item.v2 h4 { color: var(--blue-mid); }
+  .view-item.v3 h4 { color: #5b8cc8; }
+  .view-item p { font-size: 0.76rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+
+  .note-box {
+    margin-top: 1.5rem; padding: 1rem;
+    background: var(--blue-pale); border: 1px solid var(--blue-light);
+    font-size: 0.78rem; color: var(--muted); font-weight: 300; line-height: 1.9;
+  }
+  .note-box a { color: var(--blue); font-weight: 500; }
+
+  /* NEXT EVENT */
+  .event-section { background: var(--blue); }
+
+  .event-section .section-eyebrow { color: #a8c4ef; }
+  .event-section .section-eyebrow::after { background: #a8c4ef; }
+  .event-section .section-title { color: white; }
+  .event-section .section-desc { color: rgba(255,255,255,0.6); }
+
+  .event-box {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    display: grid; grid-template-columns: 160px 1fr 160px;
+  }
+
+  .event-date-col {
+    border-right: 1px solid rgba(255,255,255,0.12);
+    padding: 2.5rem 1.5rem;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; background: rgba(255,255,255,0.05);
+  }
+
+  .e-month { font-size: 0.7rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.5); margin-bottom: 0.2rem; }
+  .e-day { font-family: 'Shippori Mincho', serif; font-size: 3.8rem; font-weight: 700; line-height: 1; color: white; }
+  .e-week { font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; letter-spacing: 0.06em; }
+
+  .event-main { padding: 2.5rem; }
+  .event-main h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.3rem; color: white; font-weight: 600; margin-bottom: 1.2rem;
+  }
+
+  .event-metas { display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.2rem; }
+  .event-meta-row { display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; color: rgba(255,255,255,0.75); font-weight: 300; }
+  .meta-lbl { font-size: 0.62rem; background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); padding: 0.08rem 0.38rem; letter-spacing: 0.06em; flex-shrink: 0; }
+
+  .event-theme {
+    display: inline-block;
+    background: rgba(255,255,255,0.1); color: white;
+    padding: 0.4rem 0.9rem; font-size: 0.76rem; letter-spacing: 0.04em;
+    border-left: 3px solid var(--accent-yellow);
+  }
+
+  .event-cta-col {
+    border-left: 1px solid rgba(255,255,255,0.12);
+    padding: 2.5rem 1.5rem;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+  }
+
+  .btn-event {
+    background: white; color: var(--blue);
+    padding: 0.85rem 1.2rem; text-decoration: none;
+    font-size: 0.8rem; letter-spacing: 0.1em; font-weight: 600;
+    transition: all 0.2s; display: block; text-align: center; width: 120px;
+  }
+  .btn-event:hover { background: var(--accent-yellow); }
+
+  .event-seats { font-size: 0.7rem; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; text-align: center; }
+  .event-seats strong { color: var(--accent-yellow); }
+
+  /* ACTIVITIES */
+  .activities-section { background: white; }
+
+  .activities-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+  .activity-card {
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s, transform 0.2s; cursor: pointer;
+  }
+  .activity-card:hover { box-shadow: 0 8px 28px rgba(31,71,136,0.08); transform: translateY(-3px); }
+
+  .activity-header {
+    background: var(--blue-pale); padding: 1.6rem;
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+
+  .activity-num {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 2.2rem; color: var(--blue); font-weight: 700; opacity: 0.3; line-height: 1;
+  }
+
+  .activity-date {
+    font-size: 0.67rem; background: var(--blue); color: white;
+    padding: 0.18rem 0.55rem; letter-spacing: 0.06em;
+  }
+
+  .activity-body { padding: 1.4rem; }
+  .activity-body h4 {
+    font-family: 'Shippori Mincho', serif; font-size: 0.95rem;
+    color: var(--ink); font-weight: 600; margin-bottom: 0.5rem; line-height: 1.5;
+  }
+  .activity-body p { font-size: 0.76rem; color: var(--muted); line-height: 1.8; font-weight: 300; }
+  .activity-tag {
+    display: inline-block; margin-top: 0.7rem;
+    font-size: 0.65rem; color: var(--blue-mid);
+    border: 1px solid var(--blue-light); padding: 0.12rem 0.45rem; letter-spacing: 0.06em;
+  }
+
+  .more-center { text-align: center; margin-top: 3rem; }
+
+  /* FB BANNER */
+  .fb-wrap { padding: 0 1.5rem; }
+
+  .fb-banner {
+    max-width: 1080px; margin: 0 auto;
+    background: var(--blue-pale); border: 1px solid var(--blue-light);
+    padding: 1.8rem 2.5rem; display: flex; align-items: center; gap: 2rem;
+  }
+
+  .fb-icon {
+    width: 44px; height: 44px; background: #1877f2; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700; font-size: 1.2rem; flex-shrink: 0;
+  }
+
+  .fb-text h4 { font-size: 0.85rem; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
+  .fb-text p { font-size: 0.76rem; color: var(--muted); font-weight: 300; }
+
+  .fb-link {
+    margin-left: auto; background: #1877f2; color: white;
+    padding: 0.55rem 1.3rem; text-decoration: none;
+    font-size: 0.76rem; font-weight: 500; letter-spacing: 0.06em;
+    transition: opacity 0.2s; flex-shrink: 0;
+  }
+  .fb-link:hover { opacity: 0.85; }
+
+  /* DONATION */
+  .donation-section { background: var(--off-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .donation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+
+  .bar-wrap { margin: 1.5rem 0 2rem; }
+  .bar-header { display: flex; justify-content: space-between; font-size: 0.76rem; color: var(--muted); margin-bottom: 0.5rem; font-weight: 300; }
+  .bar-header strong { color: var(--blue); font-family: 'Shippori Mincho', serif; font-size: 1.05rem; }
+  .bar-track { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--blue); border-radius: 3px; width: 42%; }
+
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-bottom: 2.5rem; }
+  .stat-box { background: white; border: 1px solid var(--border); padding: 1.1rem; text-align: center; }
+  .stat-box .num { font-family: 'Shippori Mincho', serif; font-size: 1.7rem; color: var(--blue); font-weight: 700; display: block; }
+  .stat-box .lbl { font-size: 0.65rem; color: var(--muted); display: block; letter-spacing: 0.06em; margin-top: 0.15rem; }
+
+  .tier-list { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .tier {
+    background: white; border: 1px solid var(--border);
+    padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; transition: border-color 0.2s, background 0.2s;
+  }
+  .tier:hover, .tier.featured { border-color: var(--blue); background: var(--blue-pale); }
+
+  .tier-name { font-size: 0.85rem; font-weight: 600; color: var(--ink); margin-bottom: 0.12rem; }
+  .tier-desc { font-size: 0.7rem; color: var(--muted); font-weight: 300; }
+  .tier-price { font-family: 'Shippori Mincho', serif; font-size: 1.25rem; color: var(--blue); font-weight: 700; white-space: nowrap; }
+  .tier-price small { font-family: 'Noto Sans JP', sans-serif; font-size: 0.7rem; font-weight: 300; }
+
+  .btn-donate {
+    display: inline-block; background: var(--blue); color: white;
+    padding: 0.85rem 2rem; text-decoration: none;
+    font-size: 0.82rem; letter-spacing: 0.12em; font-weight: 500; margin-top: 1.5rem;
+    transition: all 0.2s;
+  }
+  .btn-donate:hover { background: var(--blue-mid); transform: translateY(-2px); }
+
+  /* CONTACT */
+  .contact-section { background: white; }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; }
+
+  .contact-info { display: flex; flex-direction: column; gap: 1.8rem; margin-top: 1.5rem; }
+  .ci-item h4 { font-size: 0.67rem; letter-spacing: 0.18em; color: var(--muted); margin-bottom: 0.3rem; font-weight: 400; text-transform: uppercase; }
+  .ci-item p { font-size: 0.88rem; color: var(--ink); }
+  .ci-item a { color: var(--blue); }
+
+  .contact-form { background: var(--off-white); border: 1px solid var(--border); padding: 2.5rem; }
+  .form-row { margin-bottom: 1.2rem; }
+  .form-row label { display: block; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.38rem; }
+
+  .form-row input,
+  .form-row select,
+  .form-row textarea {
+    width: 100%; padding: 0.68rem 0.9rem;
+    border: 1px solid var(--border); background: white;
+    font-family: 'Noto Sans JP', sans-serif; font-size: 0.83rem;
+    color: var(--ink); outline: none; transition: border-color 0.2s;
+    font-weight: 300; appearance: none;
+  }
+  .form-row input:focus,
+  .form-row select:focus,
+  .form-row textarea:focus { border-color: var(--blue); }
+  .form-row textarea { height: 105px; resize: vertical; }
+
+  .btn-submit {
+    background: var(--blue); color: white; width: 100%; padding: 0.88rem;
+    border: none; font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.82rem; letter-spacing: 0.15em; font-weight: 500; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-submit:hover { background: var(--blue-mid); }
+
+  /* FOOTER */
+  footer { background: var(--ink); color: rgba(255,255,255,0.55); padding: 3.5rem 1.5rem 2rem; }
+  .footer-inner { max-width: 1080px; margin: 0 auto; }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+    padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 2rem;
+  }
+  .footer-brand h3 { font-family: 'Shippori Mincho', serif; font-size: 1.05rem; color: white; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+  .footer-brand p { font-size: 0.76rem; line-height: 1.9; font-weight: 300; max-width: 270px; }
+  .footer-col h4 { font-size: 0.67rem; color: rgba(255,255,255,0.75); letter-spacing: 0.2em; margin-bottom: 1rem; font-weight: 500; text-transform: uppercase; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .footer-col ul li a { text-decoration: none; color: rgba(255,255,255,0.45); font-size: 0.76rem; font-weight: 300; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: white; }
+  .footer-bottom { display: flex; justify-content: space-between; font-size: 0.68rem; color: rgba(255,255,255,0.3); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 2rem 1.2rem 3rem; }
+    .about-grid, .donation-grid, .contact-grid, .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .activities-grid { grid-template-columns: 1fr; }
+    .event-box { grid-template-columns: 1fr; }
+    .event-date-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .event-cta-col { border-left: none; border-top: 1px solid rgba(255,255,255,0.12); }
+    section { padding: 3.5rem 1.2rem; }
+    .contact-form { padding: 1.8rem; }
+    .fb-banner { flex-direction: column; gap: 1rem; }
+    .fb-link { margin-left: 0; width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <nav>
+    <div class="nav-logo">
+      <div class="nav-logo-mark">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="6" r="3" fill="white"/>
+          <circle cx="4.5" cy="16" r="2.5" fill="white"/>
+          <circle cx="17.5" cy="16" r="2.5" fill="white"/>
+          <line x1="11" y1="9" x2="5" y2="13.5" stroke="white" stroke-width="1.2"/>
+          <line x1="11" y1="9" x2="17" y2="13.5" stroke="white" stroke-width="1.2"/>
+          <line x1="7" y1="16" x2="15" y2="16" stroke="white" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">
+        富士市『学び合い』の会
+        <small>Fuji City Manabiawai no Kai</small>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">『学び合い』とは</a></li>
+      <li><a href="#next-event">次回の会</a></li>
+      <li><a href="#activities">活動記録</a></li>
+      <li><a href="#donation">寄付・支援</a></li>
+      <li><a href="#contact">お問い合わせ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero">
+    <div>
+      <div class="hero-tag">富士市発・教育実践コミュニティ</div>
+      <h1 class="hero-title">
+        <span>『学び合い』</span>を<br>
+        富士から<br>広げていく。
+      </h1>
+      <p class="hero-desc">
+        西川純先生（上越教育大学名誉教授）が提唱する『学び合い』。<br>
+        「子どもたちは有能である」「誰一人見捨てない」という理念のもと、<br>
+        富士市の教師・保護者・地域の方々が集い、学び、つながる場です。
+      </p>
+      <div class="hero-buttons">
+        <a href="#next-event" class="btn-primary">次回の会を見る</a>
+        <a href="#about" class="btn-outline">『学び合い』とは</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="concept-card">
+        <div class="concept-card-label">『学び合い』の三つの観</div>
+        <div class="concept-pillars">
+          <div class="pillar">
+            <div class="pillar-icon">学校観</div>
+            <div class="pillar-body">
+              <h4>学校観</h4>
+              <p>学校は多様な人とおりあいをつけながら自らの課題を達成する経験を通じて、より多くの人が自分の同僚であることを学ぶ場である。</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">子ども観</div>
+            <div class="pillar-body">
+              <h4>子ども観</h4>
+              <p>子どもたちは有能である。集団の力を信じ、子どもたちが互いに助け合いながら課題を達成できる力を持っている。</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">授業観</div>
+            <div class="pillar-body">
+              <h4>授業観</h4>
+              <p>教師の仕事は目標の設定・評価・環境の整備。学習は子どもたちに委ねる。一人の教師ではなく、集団の力で全員が学ぶ。</p>
+            </div>
+          </div>
+        </div>
+        <div class="concept-quote">「誰一人見捨てない」― 西川　純</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div>
+        <p class="section-eyebrow">ABOUT</p>
+        <h2 class="section-title">『学び合い』とは<br>何か？</h2>
+        <p class="section-desc">
+          一般的な「学び合い」やグループ学習とはまったく異なります。
+          二重括弧の『学び合い』は、西川純先生が研究・実証を積み重ねた固有の教育理論・実践です。
+        </p>
+
+        <div class="nishikawa-card">
+          <div class="prof-head">
+            <div class="prof-avatar">西</div>
+            <div class="prof-info">
+              <h4>西川　純（にしかわ じゅん）</h4>
+              <p>上越教育大学　名誉教授 ／ 『学び合い』提唱者</p>
+            </div>
+          </div>
+          <p class="body">
+            1959年東京生まれ。筑波大学卒業後、定時制高校の理科教師として勤務。
+            学力底辺の生徒たちと向き合う中で、従来の一斉授業の限界を痛感し、
+            「どうすれば一人も見捨てない教育ができるか」を研究し続けた。
+            上越教育大学教授として全国の教師たちとともに実証研究を重ね、
+            『学び合い』の実践者は日本全国・韓国にまで広がっている。
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <p style="font-size:0.77rem;color:var(--muted);font-weight:300;margin-top:4rem;margin-bottom:1rem;padding:0.8rem;background:var(--off-white);border:1px solid var(--border);">
+          ⚠️ 「学び合い」と『学び合い』は<strong style="color:var(--ink);">まったく別物</strong>です。二重括弧の『学び合い』は西川先生固有の教育理論・実践を指します。
+        </p>
+        <div class="view-items">
+          <div class="view-item">
+            <h4>🏫 従来の授業との違い</h4>
+            <p>教師が前に立って解説する一斉授業ではなく、課題を提示したら子どもたちが「全員達成」を目指して動き回り、教え合い、学び合います。</p>
+          </div>
+          <div class="view-item v2">
+            <h4>🤝 集団の力を信じる</h4>
+            <p>「一人の先生より30人の子どもの知恵」。多様な関わり合いが、一斉授業では生まれない深い理解と人間関係をもたらします。</p>
+          </div>
+          <div class="view-item v3">
+            <h4>📊 実証された効果</h4>
+            <p>学力向上・不登校改善・人間関係の向上・特別支援が必要だった子の変化——多くの実践校で効果が記録・発表されています。</p>
+          </div>
+        </div>
+        <div class="note-box">
+          📘 このページの「<a href="#about">『学び合い』とは？</a>」セクションで、三つの観・西川先生の紹介・従来授業との違いをまとめています。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT EVENT -->
+<section class="event-section" id="next-event">
+  <div class="section-inner">
+    <p class="section-eyebrow">NEXT EVENT</p>
+    <h2 class="section-title">次回の『学び合い』の会</h2>
+    <p class="section-desc">教師・保護者・学生・地域の方、どなたでも参加できます。初参加の方も大歓迎！</p>
+
+    <div class="event-box">
+      <div class="event-date-col">
+        <p class="e-month">令和8年 / 07</p>
+        <p class="e-day">7</p>
+        <p class="e-week">火曜日</p>
+      </div>
+      <div class="event-main">
+        <h3>第9回　富士市『学び合い』の会</h3>
+        <div class="event-metas">
+          <div class="event-meta-row">
+            <span class="meta-lbl">日時</span>
+            令和8年7月7日（火）　17:30 〜 19:30
+          </div>
+          <div class="event-meta-row">
+            <span class="meta-lbl">場所</span>
+            富士市立吉原北中学校（富士市原田2259）
+          </div>
+          <div class="event-meta-row">
+            <span class="meta-lbl">備考</span>
+            ※駐車場へは北門からお入りください
+          </div>
+          <div class="event-meta-row">
+            <span class="meta-lbl">参加費</span>
+            無料
+          </div>
+        </div>
+        <div class="event-theme">目的：『学び合い』を実践してるけど一人で不安、悩んでいることがある。そんな先生が気軽に・安心して実践できるように、実践している仲間と出会い、語り合い、小さな「やってみよう」が生まれる場をつくる。</div>
+      </div>
+      <div class="event-cta-col">
+        <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=TCyBX3Wwd0i0WsLRT6cznYCoABVEZ6RHvRt7JtVX5aJUQVhRTUNLRFlDWUtPT08wTTkyU1laSU82NC4u" class="btn-event" target="_blank">参加申込み</a>
+        <p class="event-seats">参加費 <strong>無料</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="activities-section" id="activities">
+  <div class="section-inner">
+    <p class="section-eyebrow">ACTIVITIES</p>
+    <h2 class="section-title">これまでの活動記録</h2>
+    <p class="section-desc">富士市での『学び合い』の会の歩みです。毎回、実践報告・対話・情報交換を行っています。</p>
+
+    <div class="activities-grid">
+      <div class="activity-card">
+        <div class="activity-header">
+          <div class="activity-num">第8回</div>
+          <div class="activity-date">2026.04.24</div>
+        </div>
+        <div class="activity-body">
+          <h4>模擬授業（地形図）＆歓談</h4>
+          <p>吉原北中学校にて開催。ハッピーサンキューナイス→『学び合い』とは？→模擬授業→歓談の流れで進行。地形図をテーマにした模擬授業では大人ならではの多様な視点が飛び交い、チャレンジを宣言した先生も！</p>
+          <span class="activity-tag">模擬授業・歓談</span>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-header">
+          <div class="activity-num">第7回</div>
+          <div class="activity-date">2026.03.25</div>
+        </div>
+        <div class="activity-body">
+          <h4>実践報告＆ざっくばらんトーク</h4>
+          <p><strong style="color:var(--blue);">15名</strong>が参加。木崎先生・同僚による実践報告（約20分）の後、残り時間はざっくばらんに語り合い。「師匠に成長を認めてもらえた」「毎回新しい視点が聞けて刺激になる」との声が。</p>
+          <span class="activity-tag">実践報告・対話</span>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-header">
+          <div class="activity-num">第6回</div>
+          <div class="activity-date">2026年初頭</div>
+        </div>
+        <div class="activity-body">
+          <h4>市内中高の先生たちと語り合う</h4>
+          <p>市内中高の先生方と集まり、『学び合い』の理念・日頃の授業の悩み・実践について深く語り合いました。「ふらっと来れる」ゆるりと暖かい雰囲気で、月1回ペースでの継続開催へ。</p>
+          <span class="activity-tag">実践対話</span>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-header">
+          <div class="activity-num">第5回</div>
+          <div class="activity-date">2025.07.26</div>
+        </div>
+        <div class="activity-body">
+          <h4>オルタナティブスクール × 『学び合い』</h4>
+          <p>藤枝「みんなのミライ楽校」のよこみーをゲストに招き、オルタナティブスクールと『学び合い』の接点を探る回。異学年の学び・対話の豊かさについて参加者と語り合いました。</p>
+          <span class="activity-tag">ゲスト登壇</span>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-header">
+          <div class="activity-num">第4回</div>
+          <div class="activity-date">2025.04.24</div>
+        </div>
+        <div class="activity-body">
+          <h4>『学び合い』の模擬授業体験＆フリートーク</h4>
+          <p>地域交流スペースふじ（富士市瓜島町85）にて開催。木崎先生による模擬授業「とんかつジャンケン」を体験。終了後も話が尽きないほど盛り上がりました。</p>
+          <span class="activity-tag">模擬授業・体験</span>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-header">
+          <div class="activity-num">第3回</div>
+          <div class="activity-date">2024.12.22</div>
+        </div>
+        <div class="activity-body">
+          <h4>静岡・富士市合同『学び合い』の会</h4>
+          <p>富士市立高等学校PIRoom①にて開催。オンライン参加も含め<strong style="color:var(--blue);">44名</strong>が参加。教員のほか保護者・教育委員会・市議会議員・高校生など多様な方々が集いました。</p>
+          <span class="activity-tag">合同開催・44名参加</span>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-header">
+          <div class="activity-num">第2回</div>
+          <div class="activity-date">2024.09.15</div>
+        </div>
+        <div class="activity-body">
+          <h4>実践発表＆理念ワークショップ</h4>
+          <p>前回より増え<strong style="color:var(--blue);">20名</strong>が参加（新規参加者が半数）。長井先生の数学実践発表（学力向上・満足度データ）と、金指先生の「自分の理念を導き出す」ワークショップを実施。</p>
+          <span class="activity-tag">実践発表・WS</span>
+        </div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-header">
+          <div class="activity-num">第1回</div>
+          <div class="activity-date">2024.07.11</div>
+        </div>
+        <div class="activity-body">
+          <h4>富士市『学び合い』の会、始動！</h4>
+          <p>記念すべき第1回。平日夜開催ながら大学生・院生・中学教諭・高校教諭 総勢<strong style="color:var(--blue);">19名</strong>が参加。「明日からまた頑張れそう！」の声があふれた、温かいスタートとなりました。</p>
+          <span class="activity-tag">記念すべき第1回</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="more-center">
+      <a href="https://www.instagram.com/kaz.k.manabiya?igsh=Nnl2ZDZhaTZoNWFw&utm_source=qr" target="_blank" class="btn-outline">Instagramで活動の詳細を見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM BANNER -->
+<div class="fb-wrap" style="padding-bottom: 0;">
+  <div class="fb-banner">
+    <div class="fb-icon" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white" stroke-width="2" fill="none"/>
+        <circle cx="12" cy="12" r="4" stroke="white" stroke-width="2" fill="none"/>
+        <circle cx="17.5" cy="6.5" r="1.2" fill="white"/>
+      </svg>
+    </div>
+    <div class="fb-text">
+      <h4>Instagramでも活動を発信中！</h4>
+      <p>最新情報・参加報告・『学び合い』に関する情報交換はInstagramで行っています。</p>
+    </div>
+    <a href="https://www.instagram.com/kaz.k.manabiya?igsh=Nnl2ZDZhaTZoNWFw&utm_source=qr" class="fb-link" target="_blank" style="background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);">Instagramを見る →</a>
+  </div>
+</div>
+
+<!-- DONATION -->
+<section class="donation-section" id="donation">
+  <div class="section-inner">
+    <div class="donation-grid">
+      <div>
+        <p class="section-eyebrow">SUPPORT US</p>
+        <h2 class="section-title">学びの場を<br>ともに支えてください</h2>
+        <p class="section-desc">
+          富士市『学び合い』の会は参加費無料で運営しています。
+          会場費・資料費・運営費は皆さまのご寄付が支えです。
+        </p>
+
+        <div class="bar-wrap">
+          <div class="bar-header">
+            <span>今年度の目標達成率</span>
+            <span><strong>42%</strong> 達成（目標：○○万円）</span>
+          </div>
+          <div class="bar-track"><div class="bar-fill"></div></div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box"><span class="num">8回</span><span class="lbl">開催回数</span></div>
+          <div class="stat-box"><span class="num">44名</span><span class="lbl">最大回参加者数</span></div>
+          <div class="stat-box"><span class="num">2024〜</span><span class="lbl">活動開始年</span></div>
+        </div>
+      </div>
+
+      <div>
+        <p style="font-size:0.76rem;color:var(--muted);margin-bottom:1rem;font-weight:300;">寄付コースを選ぶ</p>
+        <div class="tier-list">
+          <div class="tier">
+            <div><div class="tier-name">🌱 さくら支援</div><div class="tier-desc">1回分の会場コーヒー代になります</div></div>
+            <div class="tier-price">500<small>円〜</small></div>
+          </div>
+          <div class="tier featured">
+            <div><div class="tier-name">📘 本支援（人気）</div><div class="tier-desc">資料印刷・参考図書の購入費として</div></div>
+            <div class="tier-price">3,000<small>円〜</small></div>
+          </div>
+          <div class="tier">
+            <div><div class="tier-name">🗻 富士支援</div><div class="tier-desc">会場費1回分を丸ごと支えていただけます</div></div>
+            <div class="tier-price">10,000<small>円〜</small></div>
+          </div>
+          <div class="tier">
+            <div><div class="tier-name">⭐ 年間サポーター</div><div class="tier-desc">年間を通じて継続的に活動を支えてくださる方</div></div>
+            <div class="tier-price">30,000<small>円〜</small></div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-donate">寄付・支援のお問い合わせ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div>
+        <p class="section-eyebrow">CONTACT</p>
+        <h2 class="section-title">お問い合わせ・<br>参加申し込み</h2>
+        <p class="section-desc">参加申し込み・寄付のご相談・取材依頼など、お気軽にどうぞ。初めての方も歓迎します。</p>
+        <div class="contact-info">
+          <div class="ci-item"><h4>Email</h4><p><a href="mailto:funny.stupid.boy419@gmail.com">funny.stupid.boy419@gmail.com</a></p></div>
+          <div class="ci-item"><h4>Area</h4><p>静岡県富士市・富士宮市周辺</p></div>
+          <div class="ci-item"><h4>Response</h4><p>3営業日以内にご返信します</p></div>
+          <div class="ci-item"><h4>Instagram</h4><p><a href="https://www.instagram.com/kaz.k.manabiya?igsh=Nnl2ZDZhaTZoNWFw&utm_source=qr" target="_blank">@kaz.k.manabiya</a></p></div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <div class="form-row">
+          <label>お名前 *</label>
+          <input type="text" placeholder="山田 太郎">
+        </div>
+        <div class="form-row">
+          <label>メールアドレス *</label>
+          <input type="email" placeholder="example@email.com">
+        </div>
+        <div class="form-row">
+          <label>立場（任意）</label>
+          <select>
+            <option>小・中・高校の教師</option>
+            <option>保護者</option>
+            <option>学生・大学院生</option>
+            <option>教育行政・研究者</option>
+            <option>地域住民・その他</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>お問い合わせの種類</label>
+          <select>
+            <option>次回の会への参加申し込み</option>
+            <option>寄付・支援について</option>
+            <option>『学び合い』について知りたい</option>
+            <option>取材・講演依頼</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>メッセージ</label>
+          <textarea placeholder="ご質問・ご要望などをお書きください"></textarea>
+        </div>
+        <button class="btn-submit" onclick="
+          const name = this.closest('.contact-form').querySelector('input[type=text]').value;
+          const email = this.closest('.contact-form').querySelector('input[type=email]').value;
+          const type = this.closest('.contact-form').querySelectorAll('select')[1].value;
+          const msg = this.closest('.contact-form').querySelector('textarea').value;
+          const body = encodeURIComponent('お名前：' + name + '\nメール：' + email + '\n種類：' + type + '\n\nメッセージ：\n' + msg);
+          window.location.href = 'mailto:funny.stupid.boy419@gmail.com?subject=' + encodeURIComponent('【富士市学び合いの会】' + type) + '&body=' + body;
+        ">送信する</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>富士市　『学び合い』の会</h3>
+        <p>
+          西川純先生（上越教育大学名誉教授）提唱の『学び合い』を学び、実践し、広げる地域コミュニティです。
+          富士山のふもとから「誰一人見捨てない」教育文化をつくります。
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="#about">『学び合い』とは</a></li>
+          <li><a href="#next-event">次回の会</a></li>
+          <li><a href="#activities">活動記録</a></li>
+          <li><a href="#donation">寄付・支援</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Links</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/kaz.k.manabiya?igsh=Nnl2ZDZhaTZoNWFw&utm_source=qr" target="_blank">Instagram</a></li>
+          <li><a href="https://www.iamjun.com/" target="_blank">西川純の部屋（公式）</a></li>
+          <li><a href="#">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 富士市『学び合い』の会</p>
+      <p>西川純先生提唱の『学び合い』普及・実践コミュニティ</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
